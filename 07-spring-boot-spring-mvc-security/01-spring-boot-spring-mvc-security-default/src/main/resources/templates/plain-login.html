@@ -6,10 +6,18 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Custom Login Page</title>
+    <style>
+        .failed{
+            color:red;
+        }
+    </style>
 </head>
 <body>
 
 <h3>My Custom Login Page</h3>
+<div th:if="${param.error}">
+    <i class="failed">False username or password!</i>
+</div>
 <form action="#" method="POST" th:action="@{/authenticateTheUser}">
     <p>
         Username: <input type="text" name="username">

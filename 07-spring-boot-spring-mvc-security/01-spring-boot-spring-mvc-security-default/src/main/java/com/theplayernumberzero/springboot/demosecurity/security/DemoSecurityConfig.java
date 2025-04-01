@@ -43,7 +43,9 @@ public class DemoSecurityConfig {
                                 .loginPage("/showMyLoginPage")  //customized login page
                                 .loginProcessingUrl("/authenticateTheUser") //no need controller
                                 .permitAll()    //everyone can see login page
-                );
+                )
+                //Add logout support
+                .logout(logout -> logout.permitAll());
         return http.build();
     }
 }
