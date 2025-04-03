@@ -36,8 +36,12 @@ public class DemoSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests(configurer ->
                 configurer
+                        .requestMatchers("/").hasRole("EMPLOYEE")
+                        .requestMatchers("/leaders/**").hasRole("MANAGER")
+                        .requestMatchers("/systems/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
-        )
+        ).exceptionHandling(configurer ->
+                        configurer.accessDeniedPage("/access-denied"))
                 .formLogin(form ->
                         form
                                 .loginPage("/showMyLoginPage")  //customized login page
@@ -45,7 +49,8 @@ public class DemoSecurityConfig {
                                 .permitAll()    //everyone can see login page
                 )
                 //Add logout support
-                .logout(logout -> logout.permitAll());
+                .logout(logout -> logout.permitAll())
+                ;
         return http.build();
     }
 }
