@@ -38,8 +38,22 @@ public class CruddemoApplication {
 
 			//findCoursesForInstructor(appDao);
 
-			findInstructorWithCoursesJoinFetch(appDao);
+			//findInstructorWithCoursesJoinFetch(appDao);
+
+			//updateInstructor(appDao);
+
+			deleteInstructor(appDao);
 		};
+	}
+
+	private void updateInstructor(AppDao appDao) {
+		int id=1;
+
+		Instructor instructor = appDao.findInstructorById(id);
+
+		instructor.setEmail("change@gmail.com");
+
+		appDao.update(instructor);
 	}
 
 	private void findInstructorWithCoursesJoinFetch(AppDao appDao) {

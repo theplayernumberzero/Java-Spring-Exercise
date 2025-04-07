@@ -38,6 +38,16 @@ public class AppDaoImpl implements AppDao{
 
         Instructor tempInstructor = findInstructorById(id);
 
+        //get courses
+
+        List<Course> courses = tempInstructor.getCourses();
+
+        //delete instructor associated with courses
+
+        for(Course tempCourse : courses){
+            tempCourse.setInstructor(null);
+        }
+
         entityManager.remove(tempInstructor);
     }
 
@@ -79,6 +89,12 @@ public class AppDaoImpl implements AppDao{
         Instructor instructor = query.getSingleResult();
 
         return instructor;
+    }
+
+    @Override
+    @Transactional
+    public void update(Instructor instructor) {
+        entityManager.merge(instructor);
     }
 
 
