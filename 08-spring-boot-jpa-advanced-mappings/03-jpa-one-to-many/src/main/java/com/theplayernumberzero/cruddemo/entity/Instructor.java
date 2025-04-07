@@ -28,7 +28,7 @@ public class Instructor {
     private InstructorDetail instructorDetail;
 
     //mappedBy = "instructor" indicates instructor field on Course class
-    @OneToMany(mappedBy = "instructor", cascade = {CascadeType.DETACH, CascadeType.MERGE,
+    @OneToMany(mappedBy = "instructor", fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Course> courses;
 

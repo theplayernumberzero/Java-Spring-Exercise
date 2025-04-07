@@ -1,7 +1,10 @@
 package com.theplayernumberzero.cruddemo.dao;
 
+import com.theplayernumberzero.cruddemo.entity.Course;
 import com.theplayernumberzero.cruddemo.entity.Instructor;
 import com.theplayernumberzero.cruddemo.entity.InstructorDetail;
+
+import java.util.List;
 
 public interface AppDao {
 
@@ -15,4 +18,5 @@ public interface AppDao {
 
     void deleteInstructorDetailById(int id);
 
+    List<Course> findCoursesByInstructorId(int id);
 }

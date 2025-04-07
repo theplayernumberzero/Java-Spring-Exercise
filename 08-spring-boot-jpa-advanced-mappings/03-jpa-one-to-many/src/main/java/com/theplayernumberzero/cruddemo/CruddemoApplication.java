@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class CruddemoApplication {
 
@@ -30,8 +32,36 @@ public class CruddemoApplication {
 
 			//deleteInstructorDetail(appDao);
 
-			createInstructorWithCourse(appDao);
+			//createInstructorWithCourse(appDao);
+
+			//findInstructorWithCourses(appDao);
+
+			findCoursesForInstructor(appDao);
 		};
+	}
+
+	private void findCoursesForInstructor(AppDao appDao) {
+		int id=1;
+		Instructor tempInstructor = appDao.findInstructorById(id);
+
+		System.out.println("Instructor: " + tempInstructor);
+
+		//find courses for instructor
+
+		List<Course> courses = appDao.findCoursesByInstructorId(id);
+
+		//associate the object
+		tempInstructor.setCourses(courses);
+	}
+
+	private void findInstructorWithCourses(AppDao appDao) {
+		int id=1;
+		Instructor tempInstructor = appDao.findInstructorById(id);
+
+		System.out.println("Instructor: " + tempInstructor);
+
+		//For this line work we have to use fetch type EAGER
+		System.out.println("Related courses: " + tempInstructor.getCourses());
 	}
 
 	private void createInstructorWithCourse(AppDao appDao) {
