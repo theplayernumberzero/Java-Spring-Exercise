@@ -1,6 +1,8 @@
 package com.theplayernumberzero.aopdemo.dao;
 
+import com.theplayernumberzero.aopdemo.Account;
+
 public interface AccountDao {
 
-    void addAccount();
+    void addAccount(Account account);
 }

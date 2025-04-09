@@ -1,6 +1,7 @@
 package com.theplayernumberzero.aopdemo;
 
 import com.theplayernumberzero.aopdemo.dao.AccountDao;
+import com.theplayernumberzero.aopdemo.dao.MembershipDao;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,14 +15,19 @@ public class AopdemoApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(AccountDao accountDao){
+	public CommandLineRunner commandLineRunner(AccountDao accountDao, MembershipDao membershipDao){
 		return runner -> {
-			demoTheBeforeAdvice(accountDao);
+			demoTheBeforeAdvice(accountDao, membershipDao);
 		};
 	}
 
-	private void demoTheBeforeAdvice(AccountDao accountDao) {
-		accountDao.addAccount();
+	private void demoTheBeforeAdvice(AccountDao accountDao, MembershipDao membershipDao) {
+
+		Account account = new Account("Bahadir", "Junior");
+
+		accountDao.addAccount(account);
+
+		membershipDao.addMember();
 	}
 
 }
